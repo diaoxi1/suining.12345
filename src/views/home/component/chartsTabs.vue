@@ -1,10 +1,10 @@
 <template>
     <van-tabs class="tabs-card" v-model="activeName" color="#429bf4" title-active-color="#429bf4" line-height="2px" @change="tabsChange">
         <van-tab title="诉求排名" name="a">
-            <div style="text-align:center; margin-top:15px;height:220px;" ref="ECharDiv1"></div>
+            <div style="text-align:center; margin-top:15px;height:200px;" ref="ECharDiv1"></div>
         </van-tab>
         <van-tab title="诉求占比" name="b">
-            <div style="text-align:center; margin-top:15px;height:220px;" ref="ECharDiv2"></div>
+            <div style="text-align:center; margin-top:15px;height:200px;" ref="ECharDiv2"></div>
         </van-tab>
         <van-tab title="诉求统计" name="c">
             <div class="statistics">
