@@ -15,13 +15,18 @@ module.exports = {
             warnings: false,
             errors: true
         },
-        proxy: {
-            '^/(api|oauth|download)': {
-                target: 'http://211.137.109.66:18000',
-                changeOrigin: true,
-                secure: false
-            }
-        }
+        // proxy: {
+        //     '^/LoginReg.aspx': {
+        //         target: 'http://12345.suining.gov.cn/Bill/LoginReg.aspx',
+        //         changeOrigin: true,
+        //         secure: false
+        //     },
+        //     '^/AjaxPro.ashx': {
+        //         target: 'http://12345.suining.gov.cn/Inc/AjaxPro.ashx?method=GetNumTj',
+        //         changeOrigin: true,
+        //         secure: false
+        //     }
+        // }
     },
     configureWebpack: {
         // provide the app's title in webpack's name field, so that

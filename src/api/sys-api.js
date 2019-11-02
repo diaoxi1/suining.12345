@@ -1,5 +1,7 @@
-import systemApi from './index'
-
+import work from './model/work'
+const systemApi = {
+    work
+}
 const install = (Vue) => {
     Object.defineProperties(Vue.prototype, {
         $api: {

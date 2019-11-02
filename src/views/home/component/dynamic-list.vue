@@ -2,11 +2,11 @@
     <div class="dynamic">
         <div class="title">
             <span class="gzdt">工作动态</span>
-            <span class="gd">更多</span>
+            <router-link class="gd" to="/work-list">更多</router-link>
         </div>
         <div class="list">
-            <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
-            <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
+            <div @click="newsInfo(1)" class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
+            <div @click="newsInfo(2)" class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
             <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
             <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
             <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
@@ -17,6 +17,11 @@
 <script>
 export default{
     name:'dynamic-list',
+    methods:{
+        newsInfo(id){
+            this.$router.push({name:'news-info',params:{ id }})
+        }
+    }
 }
 </script>
 <style scoped>

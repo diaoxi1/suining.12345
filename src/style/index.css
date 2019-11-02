@@ -1,3 +1,20 @@
 div{
     box-sizing: border-box;
 }
+.html-text{
+    font-size: 14px!important;
+}
+.html-text p,.html-text span{
+    font-size: 14px!important;
+}
+.html-text img{
+    width:auto!important;
+    height:auto!important;
+    max-width:100%!important;
+    max-height:100%!important;
+}
+.split-line{
+    height: 8px;
+    width: 100%;
+    background: #f6f6fa;
+}

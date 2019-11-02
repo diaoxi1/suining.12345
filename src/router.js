@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/home/index.vue'
 
 Vue.use(Router)
 
@@ -10,8 +9,18 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
-    }
+        component: () => import('./views/home/index.vue')
+    },
+    {
+        path: '/work-list',
+        name: 'work-list',
+        component: () => import('./views/work-list/index.vue')
+    },
+  {
+      path: '/news-info/:id',
+      name: 'news-info',
+      component: () => import('./views/news-info/index.vue')
+  }
   ],
   scrollBehavior: () => ({ y: 0 })
 })
