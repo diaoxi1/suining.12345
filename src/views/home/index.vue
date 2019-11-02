@@ -18,12 +18,12 @@
     </div>
 </template>
 <script>
-import banner from './banner'
-import itemBar from './item-bar'
-import dycnamic from './dynamic-list'
-import charts from './chartsTabs'
-import accept from './Accept-list'
-import info from './infos'
+import banner from './component/banner'
+import itemBar from './component/item-bar'
+import dycnamic from './component/dynamic-list'
+import charts from './component/chartsTabs'
+import accept from './component/Accept-list'
+import info from './component/infos'
 export default{
     name:'home',
     components:{
