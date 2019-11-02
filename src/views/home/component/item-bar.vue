@@ -1,13 +1,13 @@
 <template>
     <van-row class="item-array">
         <van-col span="8" class="item van-hairline--bottom">
-            <img src="../../assets/xjcx.png" alt="">
+            <img src="../../../assets/xjcx.png" alt="">
         </van-col>
         <van-col span="8" class="item van-hairline--bottom van-hairline--left">
-            <img src="../../assets/sjxx.png" alt="">
+            <img src="../../../assets/sjxx.png" alt="">
         </van-col>
         <van-col span="8" class="item van-hairline--bottom van-hairline--left">
-            <img src="../../assets/swxx.png" alt="">
+            <img src="../../../assets/swxx.png" alt="">
         </van-col>
     </van-row>
 </template>

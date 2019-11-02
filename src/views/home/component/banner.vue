@@ -1,9 +1,9 @@
 <template>
     <div class="banner van-hairline--bottom">
-        <img src="../../assets/logo2.png" class="logo2">
+        <img src="../../../assets/logo2.png" class="logo2">
         <div class="search">
             <input class="search-input" type="text">
-            <img src="../../assets/sousuo.png" alt="" class="sousuo">
+            <img src="../../../assets/sousuo.png" alt="" class="sousuo">
         </div>
     </div>
 </template>

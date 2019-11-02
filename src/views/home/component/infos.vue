@@ -5,7 +5,7 @@
             <span class="gd">更多</span>
         </div>
         <div class="bg">
-            <img src="../../assets/gk.png" alt="">
+            <img src="../../../assets/gk.png" alt="">
         </div>
         <div class="content">
             {{content}}
