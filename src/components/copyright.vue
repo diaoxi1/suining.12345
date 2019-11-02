@@ -4,8 +4,10 @@
             <div class="left">
                 <img src="../assets/copyright/fangxiang.png" alt="">
             </div>
-            <div class="centent">
-                <img class="content-imgs" :src="item" v-for="(item,index) in images" :key="index">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <img :src="item" class="swiper-slide content-imgs" v-for="(item,index) in images" :key="index">
+                </div>
             </div>
             <div class="right">
                 <img src="../assets/copyright/fangxiang2.png" alt="">
@@ -22,6 +24,7 @@
     </div>
 </template>
 <script>
+    import Swiper from 'swiper';
     export default{
         name:'copyright',
         data(){
@@ -34,8 +37,22 @@
                     require('../assets/copyright/snsjw.jpg'),
                     require('../assets/copyright/snxww.jpg'),
                     require('../assets/copyright/tdt.jpg')
-                ]
+                ],
+                pageIndex:2,
+                swiper1:null
             }
+        },
+        mounted(){
+            this.$nextTick(()=>{
+                this.swiper1 = new Swiper('.swiper-container', {
+                    slidesPerView:2,
+                    spaceBetween: 10,
+                    navigation: {
+                        nextEl: '.right',
+                        prevEl: '.left',
+                    },
+                });
+            })
         }
     }
 </script>
@@ -59,11 +76,9 @@
         top: 50%;
         transform: translateY(-50%);
     }
-    .centent{
+    .swiper-container{
         height: 100%;
         flex: 1;
-        display: flex;
-        justify-content: space-around;
     }
     .content-imgs{
         width: 140px;

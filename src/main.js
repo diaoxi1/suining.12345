@@ -8,7 +8,9 @@ import 'vant/lib/index.css';
 import '@/style/index.css';
 import 'amfe-flexible';
 import echarts from 'echarts'
-import copyright from "./components/copyright";
+import copyright from "./components/copyright"
+import 'swiper/css/swiper.css'
+
 Vue.use(Vant);
 Vue.use(sysApi)
 
