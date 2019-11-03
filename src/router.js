@@ -30,7 +30,12 @@ export default new Router({
       path: '/news-info/:id',
       name: 'news-info',
       component: () => import('./views/news-info/index.vue')
-    }
+    },
+      {
+          path: '/appeal-list',
+          name: 'appeal-list',
+          component: () => import('./views/appeal-list/index.vue')
+      },
   ],
   scrollBehavior: () => ({ y: 0 })
 })

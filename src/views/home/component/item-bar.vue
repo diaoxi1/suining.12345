@@ -1,6 +1,6 @@
 <template>
     <van-row class="item-array">
-        <van-col span="8" class="item van-hairline--bottom">
+        <van-col span="8" class="item van-hairline--bottom" @click="$router.push({name:'appeal-list'})">
             <img src="../../../assets/xjcx.png" alt="">
         </van-col>
         <van-col span="8" class="item van-hairline--bottom van-hairline--left">
