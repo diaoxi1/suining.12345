@@ -1,6 +1,9 @@
 div{
     box-sizing: border-box;
 }
+html,body,#app{
+    height: 100%;
+}
 .html-text{
     font-size: 14px!important;
 }

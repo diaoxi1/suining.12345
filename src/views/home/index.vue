@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <van-nav-bar title="12345政府服务热线">
-            <van-icon name="user-o" slot="right" size="2em"/>
+            <van-icon name="user-o" slot="right" size="2em" @click="userInfo"/>
         </van-nav-bar>
         <banner></banner>
         <item-bar></item-bar>
@@ -33,6 +33,11 @@ export default{
         charts,
         accept,
         info
+    },
+    methods:{
+        userInfo(){
+            this.$router.push({name:'login'})
+        }
     }
 }
 </script>
