@@ -5,7 +5,7 @@
             finished-text="没有更多了"
             @load="onLoad"
     >
-        <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index">
+        <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
             <div class="img">
                 <img src="../../../assets/wancheng.png" alt="">
             </div>
@@ -50,6 +50,15 @@
                         this.finished = true;
                     }
                 }, 500);
+            },
+            getAppeal(item){
+                this.$router.push({
+                    name:'appeal-info',
+                    params:{
+                        id:item.code,
+                        title:item.title
+                    }
+                })
             }
         }
     }
