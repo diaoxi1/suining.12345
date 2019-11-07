@@ -22,10 +22,10 @@
                 <div class="content">
                     <div class="box html-text" v-html="html"></div>
                 </div>
+                <div class="split-line"></div>
+                <copyright></copyright>
             </template>
 
-            <div class="split-line"></div>
-            <copyright></copyright>
     </div>
 </template>
 <script>

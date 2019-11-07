@@ -10,5 +10,11 @@ export default {
                 id
             }
         })
+    },
+//    诉求详情
+    getAppealInfo(id){
+        return Instance.get('/v1/bill/detail',{
+            params:{id}
+        })
     }
 }

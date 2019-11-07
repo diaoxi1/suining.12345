@@ -38,9 +38,16 @@
                     this.loading = false
                     if(res.if_next){
                         this.pg = res.pg +1
+                        this.list.push(...res.work_list)
+                    }else {
+                        let tmp = []
+                        if(res.work_list.length>2){
+                            tmp = res.work_list.splice(1,res.work_list.length-1)
+                        }
+                        this.list.push(...tmp)
                     }
                     this.finished = !res.if_next
-                    this.list.push(...res.work_list)
+
                 })
             },
             newsInfo(id){

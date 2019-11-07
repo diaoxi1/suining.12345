@@ -1,62 +1,60 @@
 <template>
     <div class="appeal-list">
-        <van-nav-bar
-                :title="title"
-                left-text="返回"
-                left-arrow
-                @click-left="onClickLeft"
-        />
-       <div class="van-hairline--bottom">
-           <div class="title ">诉求</div>
-       </div>
-        <div class="h">
-            <div class="lable">诉求编号：</div>
-            <div class="value">2019101501573</div>
-        </div>
-        <div class="h">
-            <div class="lable">信息来源：</div>
-            <div class="value">12345政府服务热线</div>
-        </div>
-        <div class="h">
-            <div class="lable">来电时间：</div>
-            <div class="value">2019/10/15 19:29:34</div>
-        </div>
-        <div class="h">
-            <div class="lable">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</div>
-            <div class="value">路灯未开启</div>
-        </div>
-        <div class="wnti">
-            <div class="lable">问题摘要：</div>
-            <div class="value gd">
-                地址：蓬溪县城南高速出口至新县医院路段 事件：先生致电反映，该路段的路灯从10月13日开始便未开启，截止10月15日仍未恢复，
+        <van-sticky>
+            <van-nav-bar
+                    :title="title"
+                    left-text="返回"
+                    left-arrow
+                    @click-left="onClickLeft"
+            />
+        </van-sticky>
+        <van-loading v-if="show"></van-loading>
+        <template v-else>
+           <div class="van-hairline--bottom">
+               <div class="title ">诉求</div>
+           </div>
+            <div class="h">
+                <div class="lable">诉求编号：</div>
+                <div class="value">{{BILLID}}</div>
             </div>
-        </div>
-        <div class="split-line"></div>
-        <div class="result">
-            <div class="title">处理结果</div>
-            <div class="result-info">
-                <div class="unit">
-                    <span class="unit-title">处理单位：</span>
-                    <span class="unit-name">县住建局</span>
-                </div>
-                <div class="result-content">
-                    住建局接件后2019年10月16日工作人员何云根据来电人的诉求，到投诉地点进行核查，来电人诉求属实。该投诉地段路灯线路故障导致。
+            <div class="h">
+                <div class="lable">信息来源：</div>
+                <div class="value">{{ LYNAME | unicode }}</div>
+            </div>
+            <div class="h">
+                <div class="lable">来电时间：</div>
+                <div class="value">{{CREATE_TIME | unicode}}</div>
+            </div>
+            <div class="h">
+                <div class="lable">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</div>
+                <div class="value">{{KEYWORD | unicode}}</div>
+            </div>
+            <div class="wnti">
+                <div class="lable">问题摘要：</div>
+                <div class="value gd">
+                    {{CONTENT | unicode}}
                 </div>
             </div>
-        </div>
-        <div class="result">
-            <div class="result-info">
-                <div class="unit">
-                    <span class="unit-title">处理单位：</span>
-                    <span class="unit-name">蓬溪县政府</span>
+            <div class="split-line"></div>
+
+            <template v-for="item in CB">
+                <div class="result">
+                    <div class="title">处理结果</div>
+                    <div class="result-info">
+                        <div class="unit">
+                            <span class="unit-title">处理单位：</span>
+                            <span class="unit-name">{{item.name | unicode}}</span>
+                        </div>
+                        <div class="result-content">
+                            {{item.cb | unicode}}
+                        </div>
+                    </div>
                 </div>
-                <div class="result-content">
-                    2019年10月16日，住建局工作人员何云根据来电人的诉求，到投诉地点进行核查，来电人诉求属实。该投诉地段路灯线路故障导致路灯
-                </div>
-            </div>
-        </div>
-        <div class="split-line"></div>
-        <copyright></copyright>
+
+                <div class="split-line"></div>
+                <copyright></copyright>
+            </template>
+        </template>
     </div>
 </template>
 <script>
@@ -64,16 +62,51 @@
         name:'appeal-info',
         data(){
           return {
-              title:''
+              title:'',
+              BILLID:'',
+              LYNAME:'',
+              CREATE_TIME:'',
+              KEYWORD:'',
+              CONTENT:'',
+              CB:[],
+              show:true
           }
         },
-        mounted(){
-          this.title = this.$route.params.title
+        activated(){
+            this.$api.index.getAppealInfo(this.$route.params.id).then(res=>{
+                if(res.Data.length){
+                    this.title = this.unicodes(res.Data[0].KEYWORD)
+                    this.BILLID = res.Data[0].BILLID
+                    this.LYNAME = res.Data[0].LYNAME
+                    this.CREATE_TIME = res.Data[0].CREATE_TIME
+                    this.KEYWORD = res.Data[0].KEYWORD
+                    this.CONTENT = res.Data[0].CONTENT
+                    res.Data.map(item=>{
+                        this.CB.push({
+                            name:item.NAME,
+                            cb:item.CB_CONTENT
+                        })
+                    })
+                    this.show = false
+                }
+            })
         },
         methods:{
             onClickLeft() {
                 this.$router.go(-1)
             },
+            unicodes(code){
+                let str = eval("'"+code+"'");
+                str = unescape(str.replace(/\u/g, "%u"))
+                return str.replace(/[%]/g,"")
+            }
+        },
+        filters:{
+            unicode(code){
+                let str = eval("'"+code+"'");
+                str = unescape(str.replace(/\u/g, "%u"))
+                return str.replace(/[%]/g,"")
+            }
         }
     }
 </script>
