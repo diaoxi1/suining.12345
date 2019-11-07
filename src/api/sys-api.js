@@ -1,5 +1,7 @@
+import index from './model/index'
 import work from './model/work'
 const systemApi = {
+    index,
     work
 }
 const install = (Vue) => {

@@ -9,19 +9,19 @@
         <van-tab title="诉求统计" name="c">
             <div class="statistics">
                 <div>
-                    <span class="statistics-number">123456</span>
+                    <span class="statistics-number">{{ranking.sqcount['今日述求']}}</span>
                     <span class="statistics-name">今日诉求</span>
                 </div>
                 <div>
-                    <span class="statistics-number">123456</span>
+                    <span class="statistics-number">{{ranking.sqcount['话务量']}}</span>
                     <span class="statistics-name">累计话务量</span>
                 </div>
                 <div>
-                    <span class="statistics-number">123456</span>
+                    <span class="statistics-number">{{ranking.sqcount['建单量']}}</span>
                     <span class="statistics-name">累计建单量</span>
                 </div>
                 <div>
-                    <span class="statistics-number">123456</span>
+                    <span class="statistics-number">{{ranking.sqcount['办结量']}}</span>
                     <span class="statistics-name">累计办结量</span>
                 </div>
             </div>
@@ -31,6 +31,13 @@
 <script>
 export default{
     name:'chartsBabs',
+    props:{
+        ranking:{
+            type:Object,
+            default:() => [],
+        required: true
+        }
+    },
     data(){
         return{
             activeName:'a'
@@ -40,9 +47,7 @@ export default{
         tabsChange(name){
             if(name==='b'){
                 this.$nextTick(()=>{
-                    this.charts2([
-                        {"name":"求决类","value":"1804294"},{"name":"其他","value":"519236"},{"name":"咨询","value":"374780"},{"name":"揭发控告类","value":"26103"},{"name":"意见建议类","value":"14357"},{"name":"申诉类","value":"1371"}
-                    ])
+                    this.charts2(this.ranking.sqtype)
                 })
             }
         },
@@ -105,7 +110,6 @@ export default{
                     orient: 'vertical',
                     x: 'right',
                     y: 'bottom'
-                    //, data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
                 },
                 series: [
                     {
@@ -141,9 +145,7 @@ export default{
     },
     mounted() {
         this.$nextTick(()=>{
-            this.charts1([
-                {"name":"射洪县政府","value":"230672"},{"name":"船山区政府","value":"217398"},{"name":"蓬溪县政府","value":"200296"},{"name":"安居区政府","value":"199261"},{"name":"大英县政府","value":"184982"},{"name":"遂宁经开区管委会","value":"138662"},{"name":"市河东新区管委会","value":"61057"},{"name":"市公安局","value":"59137"}
-            ])
+            this.charts1(this.ranking.sqarea)
         })
     }
 }

@@ -11,26 +11,11 @@
                     <td>来电时间</td>
                     <td>处理情况</td>
                 </tr>
-                <tr>
-                    <td>路灯未开启路灯未开</td>
-                    <td>2019-10-15</td>
-                    <td>已结办</td>
-                </tr>
-                <tr>
-                    <td>路灯未开启</td>
-                    <td>2019-10-15</td>
-                    <td>已结办</td>
-                </tr>
-                <tr>
-                    <td>路灯未开启</td>
-                    <td>2019-10-15</td>
-                    <td>已结办</td>
-                </tr>
-                <tr>
-                    <td>路灯未开启</td>
-                    <td>2019-10-15</td>
-                    <td>已结办</td>
-                </tr>
+                <template v-for="item in bill">
+                    <tr @click="acceptClick(item.id)">
+                        <td>{{item.title}}</td><td>{{item.time | dataTime}}</td><td>{{item.status}}</td>
+                    </tr>
+                </template>
             </table>
         </div>
     </div>
@@ -38,6 +23,21 @@
 <script>
     export default{
         name:'accept-list',
+        props:{
+            bill:Array,
+            default:()=> [],
+            required:true
+        },
+        methods:{
+            acceptClick(id){
+                this.$router.push({name:'appeal-info',params:{ id }})
+            }
+        },
+        filters:{
+            dataTime(tiem){
+                return tiem.split(' ')[0]
+            }
+        }
     }
 </script>
 <style scoped>
@@ -68,14 +68,25 @@
     table{
         width: 100%;
     }
-
+    table tr{
+        font-size: 0;
+        border-bottom:1px solid #f2f2f2;
+        display: flex;
+        justify-content: space-between;
+    }
+    table tr td:first-child{
+        width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     table td{
+        display: inline-block;
         font-size: 12px;
         color: #686868;
         text-align: center;
         height: 30px;
         line-height: 30px;
-        border-bottom:1px solid #f2f2f2;
     }
     .list-title{
         width: 100%;

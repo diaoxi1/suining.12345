@@ -15,18 +15,13 @@ module.exports = {
             warnings: false,
             errors: true
         },
-        // proxy: {
-        //     '^/LoginReg.aspx': {
-        //         target: 'http://12345.suining.gov.cn/Bill/LoginReg.aspx',
-        //         changeOrigin: true,
-        //         secure: false
-        //     },
-        //     '^/AjaxPro.ashx': {
-        //         target: 'http://12345.suining.gov.cn/Inc/AjaxPro.ashx?method=GetNumTj',
-        //         changeOrigin: true,
-        //         secure: false
-        //     }
-        // }
+        proxy: {
+            '^/(v1)': {
+                target: 'http://101.132.226.213',
+                changeOrigin: true,
+                secure: false
+            }
+        }
     },
     configureWebpack: {
         // provide the app's title in webpack's name field, so that

@@ -5,18 +5,22 @@
             <router-link class="gd" to="/work-list">更多</router-link>
         </div>
         <div class="list">
-            <div @click="newsInfo(1)" class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
-            <div @click="newsInfo(2)" class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
-            <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
-            <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
-            <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
-            <div class="van-hairline--bottom item"><span class="dian"></span>列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题列表标题</div>
+            <template v-for="(item) in work">
+                <div @click="newsInfo(item.id)" class="van-hairline--bottom item"><span class="dian"></span>{{item.text}}</div>
+            </template>
         </div>
     </div>
 </template>
 <script>
 export default{
     name:'dynamic-list',
+    props:{
+        work:{
+            type:Array,
+            default:()=>[],
+            required: true
+        }
+    },
     methods:{
         newsInfo(id){
             this.$router.push({name:'news-info',params:{ id }})
