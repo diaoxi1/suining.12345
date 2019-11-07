@@ -1,11 +1,13 @@
 <template>
     <div class="work-list">
-        <van-nav-bar
-                title="工作动态"
-                left-text="返回"
-                left-arrow
-                @click-left="onClickLeft"
-        />
+        <van-sticky>
+            <van-nav-bar
+                    title="工作动态"
+                    left-text="返回"
+                    left-arrow
+                    @click-left="onClickLeft"
+            />
+        </van-sticky>
         <list></list>
     </div>
 </template>
