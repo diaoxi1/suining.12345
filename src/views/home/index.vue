@@ -1,8 +1,10 @@
 <template>
     <div class="home">
-            <van-nav-bar title="12345政府服务热线">
-                <van-icon name="user-o" slot="right" size="2em" @click="userInfo"/>
-            </van-nav-bar>
+            <van-sticky>
+                <van-nav-bar title="12345政府服务热线">
+                        <van-icon name="user-o" slot="right" size="2em" @click="userInfo"/>
+                </van-nav-bar>
+            </van-sticky>
             <banner></banner>
             <item-bar></item-bar>
             <div class="split-line"></div>

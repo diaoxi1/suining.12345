@@ -1,28 +1,29 @@
 <template>
     <div class="work-list">
-            <van-nav-bar
-                    :title="title"
-                    left-text="返回"
-                    left-arrow
-                    @click-left="onClickLeft"
-            />
-            <div class="title  van-multi-ellipsis--l2">
-                <van-loading v-if="show" ></van-loading>
-                <template v-else>
-                    {{title}}
-                </template>
+            <van-sticky>
+                <van-nav-bar
+                        :title="title"
+                        left-text="返回"
+                        left-arrow
+                        @click-left="onClickLeft"
+                />
+            </van-sticky>
 
-            </div>
-            <div class="date">
-                <div>{{ time[0] }} {{time[1]}}</div>
-                <div>阅读量:{{ reading }}</div>
-            </div>
-            <div class="line"></div>
-            <div class="content">
-                <van-loading v-if="show"></van-loading>
-                <div class="box html-text" v-html="html" v-else>
+            <van-loading v-if="show"></van-loading>
+            <template v-else>
+                <div class="title  van-multi-ellipsis--l2">
+                    {{title}}
                 </div>
-            </div>
+                <div class="date">
+                    <div>{{ time[0] }} {{time[1]}}</div>
+                    <div>{{ reading }}</div>
+                </div>
+                <div class="line"></div>
+                <div class="content">
+                    <div class="box html-text" v-html="html"></div>
+                </div>
+            </template>
+
             <div class="split-line"></div>
             <copyright></copyright>
     </div>
