@@ -5,6 +5,7 @@
             <router-link class="gd" to="/work-list">更多</router-link>
         </div>
         <div class="list">
+            <van-loading  v-if="loading"></van-loading>
             <template v-for="(item) in work">
                 <div @click="newsInfo(item.id)" class="van-hairline--bottom item"><span class="dian"></span>{{item.text}}</div>
             </template>
@@ -19,7 +20,8 @@ export default{
             type:Array,
             default:()=>[],
             required: true
-        }
+        },
+        loading:[Boolean]
     },
     methods:{
         newsInfo(id){

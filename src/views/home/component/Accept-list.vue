@@ -11,6 +11,7 @@
                     <td>来电时间</td>
                     <td>处理情况</td>
                 </tr>
+                <van-loading  v-if="loading"></van-loading>
                 <template v-for="item in bill">
                     <tr @click="acceptClick(item.id)">
                         <td>{{item.title}}</td><td>{{item.time | dataTime}}</td><td>{{item.status}}</td>
@@ -24,9 +25,12 @@
     export default{
         name:'accept-list',
         props:{
-            bill:Array,
-            default:()=> [],
-            required:true
+            bill:{
+                type:Array,
+                default:()=> [],
+                required:true
+            },
+            loading:[Boolean]
         },
         methods:{
             acceptClick(id){

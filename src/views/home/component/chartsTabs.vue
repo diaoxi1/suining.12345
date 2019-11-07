@@ -34,8 +34,10 @@ export default{
     props:{
         ranking:{
             type:Object,
-            default:() => [],
-        required: true
+            default:() => {
+                return {}
+            },
+            required: true
         }
     },
     data(){

@@ -1,27 +1,21 @@
 <template>
     <div class="home">
-        <template v-if="!show">
             <van-nav-bar title="12345政府服务热线">
                 <van-icon name="user-o" slot="right" size="2em" @click="userInfo"/>
             </van-nav-bar>
             <banner></banner>
             <item-bar></item-bar>
             <div class="split-line"></div>
-            <dycnamic :work="work"></dycnamic>
+            <dycnamic :work="work" :loading="loading"></dycnamic>
             <div class="split-line"></div>
-            <charts :ranking="ranking"></charts>
+            <van-loading v-if="loading"></van-loading>
+            <charts :ranking="ranking" v-else></charts>
             <div class="split-line"></div>
-            <accept :bill="bill"></accept>
+            <accept :bill="bill" :loading="loading"></accept>
             <div class="split-line"></div>
             <info></info>
             <div class="split-line"></div>
             <copyright></copyright>
-        </template>
-        <template v-else>
-            <div class="loading">
-                <van-loading size="24px" vertical>加载中...</van-loading>
-            </div>
-        </template>
     </div>
 </template>
 <script>
@@ -38,7 +32,7 @@ export default{
             bill:[],
             ranking:[],
             work:[],
-            show:true
+            loading:true
         }
     },
     components:{
@@ -59,7 +53,7 @@ export default{
             this.bill = res.bill
             this.ranking = res.ranking
             this.work = res.work
-            this.show = false
+            this.loading = false
         })
     }
 }
@@ -75,7 +69,4 @@ export default{
     }
     .loading{
         display: flex;
-        flex-direction: column;
-        justify-content:center ;
-    }
-</style>
+        flex-direction: column
