@@ -14,13 +14,6 @@ module.exports = {
         overlay: {
             warnings: false,
             errors: true
-        },
-        proxy: {
-            '^/(v1)': {
-                target: 'http://101.132.226.213',
-                changeOrigin: true,
-                secure: false
-            }
         }
     },
     configureWebpack: {

@@ -2,7 +2,7 @@ import axios from 'axios'
 // 创建实例
 
 const Instance = axios.create({
-    baseURL: '',
+    baseURL: 'http://12345.suining.gov.cn:5000',
     timeout: 1000 * 60, // 2分钟超时,考虑文件上传
     headers: { 'Content-Type': 'application/json;' }
 })
