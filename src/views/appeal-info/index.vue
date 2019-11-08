@@ -50,10 +50,10 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="split-line"></div>
-                <copyright></copyright>
             </template>
+
+            <div class="split-line"></div>
+            <copyright></copyright>
         </template>
     </div>
 </template>
