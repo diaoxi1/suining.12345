@@ -6,7 +6,7 @@
             </div>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <img :src="item" class="swiper-slide content-imgs" v-for="(item,index) in images" :key="index">
+                    <img :src="item.img" class="swiper-slide content-imgs" v-for="(item,index) in images" :key="index" @click="open(item.url)">
                 </div>
             </div>
             <div class="right">
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="link-array van-hairline--top-bottom">
-            <span>法律声明</span><span>联系我们</span><span>使用帮助</span>
+            <span @click="$router.push({name:'news-info',params:{ id:10 }})">法律声明</span><span @click="$router.push({name:'news-info',params:{ id:8 }})">联系我们</span><span @click="$router.push({name:'news-info',params:{ id:12 }})">使用帮助</span>
         </div>
         <div class="infos">
             <span>Copyright © 2011 rsj.scsn.gov.cn All Rights Reserved</span>
@@ -30,13 +30,28 @@
         data(){
             return {
                 images:[
-                    require('../assets/copyright/scsrmzf.png'),
-                    require('../assets/copyright/zyrmzf.png'),
-                    require('../assets/copyright/scfb.jpg'),
-                    require('../assets/copyright/snggzy.jpg'),
-                    require('../assets/copyright/snsjw.jpg'),
-                    require('../assets/copyright/snxww.jpg'),
-                    require('../assets/copyright/tdt.jpg')
+                    {
+                        url:'http://www.gov.cn/',img:require('../assets/copyright/scsrmzf.png')
+                    },
+                    {
+                        url:'http://www.sc.gov.cn/',img:require('../assets/copyright/zyrmzf.png')
+                    },
+                    {
+                        url:'http://www.scpublic.cn/',img:require('../assets/copyright/scfb.jpg')
+                    },
+                    {
+                        url:'http://www.snggzy.gov.cn/',img:require('../assets/copyright/snggzy.jpg')
+                    },
+                    {
+                        url:'http://www.sjc.gov.cn/index.aspx',img:require('../assets/copyright/snsjw.jpg')
+                    },
+                    {
+                        url:'http://www.snxw.com/',img:require('../assets/copyright/snxww.jpg')
+                    },
+                    {
+                        url:'http://www.sngis.cn/',img:require('../assets/copyright/tdt.jpg')
+                    }
+
                 ],
                 pageIndex:2,
                 swiper1:null
@@ -53,6 +68,11 @@
                     },
                 });
             })
+        },
+        methods:{
+            open(url){
+                window.open(url)
+            }
         }
     }
 </script>

@@ -7,15 +7,16 @@
     >
         <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
             <div class="img">
-                <img src="../../../assets/wancheng.png" alt="">
+                <img src="../../../assets/wancheng.png" alt="" v-if="item.status==='已办结'">
+                <img src="../../../assets/chuli.png" alt="" v-else>
             </div>
             <div class="list-info">
                 <div class="title">
                     {{item.title}}
                 </div>
                 <div class="item-info">
-                    <div class="bh">{{item.code}}</div>
-                    <div class="bh">{{item.time}}</div>
+                    <div class="bh">{{item.id}}</div>
+                    <div class="bh">{{item.time | dateformat}}</div>
                 </div>
             </div>
         </div>
@@ -28,28 +29,70 @@
             return {
                 list: [],
                 loading: false,
-                finished: false
+                finished: false,
+                page:1
             };
         },
-        methods: {
-            onLoad() {
-                // 异步更新数据
-                setTimeout(() => {
-                    for (let i = 0; i < 10; i++) {
-                        this.list.push({
-                            code: 2019102700765,
-                            title:'咨询在异地办理的保安证能否在射洪市使用',
-                            time:'2019/10/28'
-                        });
-                    }
-                    // 加载状态结束
-                    this.loading = false;
+        filters:{
+            dateformat(time) {
+                let params = 'y-M-d h:m:s'
+                let date = new Date(time),
+                    year = date.getFullYear(),
+                    month = date.getMonth() + 1,
+                    day = date.getDate(),
+                    hour = date.getHours(),
+                    minute = date.getMinutes(),
+                    second = date.getSeconds()
 
-                    // 数据全部加载完成
-                    if (this.list.length >= 40) {
-                        this.finished = true;
+                let arr = params.split('')
+                let result = ''
+                for (let i = 0; i < arr.length; i += 2) {
+                    let tem = arr[i + 1] === undefined ? '' : arr[i + 1]
+                    switch (arr[i]) {
+                        case 'y':
+                            result += addZero(year) + tem
+                            break
+                        case 'M':
+                            result += addZero(month) + tem
+                            break
+                        case 'd':
+                            result += addZero(day) + tem
+                            break
+                        case 'h':
+                            result += addZero(hour) + tem
+                            break
+                        case 'm':
+                            result += addZero(minute) + tem
+                            break
+                        case 's':
+                            result += addZero(second)
+                            break
                     }
-                }, 500);
+                }
+                function addZero(obj) {
+                    return obj < 10 ? '0' + obj : obj
+                }
+
+
+                return result
+            },
+        },
+        methods: {
+            search(data){
+                this.list = []
+                this.page = 1
+               this.onLoad(data)
+            },
+            onLoad(data={}) {
+                this.$api.index.getAppeaList({pg:this.page,...data}).then(res=>{
+                    this.loading = false
+                    if(this.page<res.countPage){
+                        this.page= this.page + 1
+                        this.list=[...this.list,...res.sq_list]
+                    }
+                    this.finished = this.page>=res.countPage
+                })
+
             },
             getAppeal(item){
                 this.$router.push({
@@ -59,7 +102,7 @@
                         title:item.title
                     }
                 })
-            }
+            },
         }
     }
 </script>

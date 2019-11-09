@@ -13,7 +13,7 @@
                         <van-cell title="情况" :value="status" @click="show2=true" />
                     </van-tab>
                 </van-tabs>
-                <div class="search-button">
+                <div class="search-button" @click="handelClick">
                     查询
                 </div>
             </div>
@@ -39,10 +39,10 @@
         data(){
             return {
                 active: 0,
-                id: '',
-                phone: '',
-                startTime: '',
-                endTime:'',
+                id: null,
+                phone: null,
+                startTime: null,
+                endTime:null,
                 status:'全部',
                 show: false,
                 minHour: 10,
@@ -118,9 +118,20 @@
                 }
                 return result
             },
-
             addZero(obj) {
                 return obj < 10 ? '0' + obj : obj
+            },
+            handelClick(){
+                let data = {}
+                if(this.active===0){
+                    data.id=this.id
+                    data.phone=this.phone
+                }else{
+                    data.startTime=this.startTime
+                    data.endTime = this.endTime
+                    data.status = this.status
+                }
+                this.$emit('search',data)
             }
         }
     }

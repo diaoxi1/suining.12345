@@ -2,12 +2,15 @@
     <van-row class="item-array">
         <van-col span="8" class="item van-hairline--bottom" @click="$router.push({name:'appeal-list'})">
             <img src="../../../assets/xjcx.png" alt="">
+            <span>信件查询</span>
         </van-col>
         <van-col span="8" class="item van-hairline--bottom van-hairline--left">
             <img src="../../../assets/sjxx.png" alt="">
+            <span>市长信箱</span>
         </van-col>
         <van-col span="8" class="item van-hairline--bottom van-hairline--left">
             <img src="../../../assets/swxx.png" alt="">
+            <span>市委信箱</span>
         </van-col>
     </van-row>
 </template>
@@ -19,18 +22,27 @@ export default{
 
 <style scoped>
     .item-array{
-        height: 80px;
+        height: 90px;
     }
     .item-array .item{
         height: 100%;
         position: relative;
+
     }
     .item-array .item img{
         height: 54px;
         width: 54px;
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 50%;
         transform: translate(-50%,-50%);
+    }
+    .item-array .item span{
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        top: 75%;
     }
 </style>

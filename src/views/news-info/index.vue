@@ -33,7 +33,7 @@
         name:'work-list',
         data(){
             return{
-                title:'新闻标题',
+                title:'加载中',
                 html:``,
                 reading:0,
                 time:'',

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {Toast} from 'vant';
+
 // 创建实例
 
 const Instance = axios.create({
@@ -19,14 +21,21 @@ Instance.interceptors.request.use(function (config) {
 // 添加响应拦截器
 Instance.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    if(response.status!==200){
+    if(response.data.Code==500){
         //     统一处理
+        Toast.fail(unicodes(response.data.Msg));
+        return
     }
-
     return response.data;
 }, function (error) {
     // 对响应错误做点什么
+    Toast.fail('加载失败，请稍后重试');
     return Promise.reject(error);
 });
 
+function  unicodes(code){
+    let str = eval("'"+code+"'");
+    str = unescape(str.replace(/\u/g, "%u"))
+    return str.replace(/[%]/g,"")
+}
 export default Instance

@@ -6,8 +6,8 @@
                 left-arrow
                 @click-left="onClickLeft"
         />
-        <searchTbas></searchTbas>
-        <list></list>
+        <searchTbas @search="search"></searchTbas>
+        <list ref="list"></list>
     </div>
 </template>
 <script>
@@ -19,10 +19,19 @@
             searchTbas,
             list
         },
+        data(){
+            return{
+                active:0,
+                datas:{}
+            }
+        },
         methods:{
             onClickLeft() {
                 this.$router.go(-1)
             },
+            search(data){
+                this.$refs.list.search(data)
+            }
         }
     }
 </script>

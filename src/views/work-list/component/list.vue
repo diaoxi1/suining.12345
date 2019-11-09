@@ -34,7 +34,8 @@
         },
         methods: {
             onLoad() {
-                this.$api.work.getWork(this.pg).then(res=>{
+                let key = this.$route.params.key
+                this.$api.work.getWork(this.pg,key).then(res=>{
                     this.loading = false
                     if(res.if_next){
                         this.pg = res.pg +1

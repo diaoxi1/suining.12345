@@ -16,5 +16,14 @@ export default {
         return Instance.get('/v1/bill/detail',{
             params:{id}
         })
+    },
+    getAppeaList(data){
+        return Instance.get('/v1/bill/get',{
+            params:data
+        })
+    },
+//    注册
+    reg(data){
+        return Instance.post('/v1/account/reg',data)
     }
 }

@@ -2,7 +2,7 @@
     <div class="dynamic">
         <div class="title">
             <span class="gzdt">受理公开</span>
-            <span class="gd">更多</span>
+            <span class="gd" @click="$router.push({name:'appeal-list'})">更多</span>
         </div>
         <div class="list">
             <table>

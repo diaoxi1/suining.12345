@@ -2,14 +2,24 @@
     <div class="banner van-hairline--bottom">
         <img src="../../../assets/logo2.png" class="logo2">
         <div class="search">
-            <input class="search-input" type="text">
-            <img src="../../../assets/sousuo.png" alt="" class="sousuo">
+            <input class="search-input" type="text" v-model="key">
+            <img src="../../../assets/sousuo.png" alt="" class="sousuo" @click="search">
         </div>
     </div>
 </template>
 <script>
     export default{
-        name:'index-banner'
+        name:'index-banner',
+        data(){
+            return {
+                key:''
+            }
+        },
+        methods:{
+            search(){
+                this.$router.push({name:'work-list',params:{ key:this.key }})
+            }
+        }
     }
 </script>
 <style scoped>
