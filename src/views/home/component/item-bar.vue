@@ -19,6 +19,10 @@ export default{
     name:'item-bar',
     methods:{
         submit(type){
+            if(!this.$store.getters.getToken){
+                this.$router.push({name:'login'})
+                return
+            }
             this.$router.push({
                 name:'submit',
                 params:{ type }

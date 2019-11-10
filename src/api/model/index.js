@@ -25,5 +25,13 @@ export default {
 //    注册
     reg(data){
         return Instance.post('/v1/account/reg',data)
+    },
+//     登陆接口
+    login(data){
+        return Instance.post('/v1/account/login',data)
+    },
+//    个人的诉求
+    myAppealInfo(){
+        return Instance.get('/v1/account/bill')
     }
 }

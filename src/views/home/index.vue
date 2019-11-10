@@ -47,7 +47,13 @@ export default{
     },
     methods:{
         userInfo(){
-            this.$router.push({name:'login'})
+            console.log(this.$store.getters.getToken)
+            if(!this.$store.getters.getToken){
+                this.$router.push({name:'login'})
+            }else{
+                this.$router.push({name:'user'})
+            }
+
         }
     },
     mounted() {

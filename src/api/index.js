@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {Toast} from 'vant';
+import store from '../store'
 
 // 创建实例
 
@@ -11,7 +12,9 @@ const Instance = axios.create({
 // 添加请求拦截器
 Instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
-    // console.log(config)
+    if(store.getters.getToken){
+        config.headers.Authorization = store.getters.getToken
+    }
     return config;
 }, function (error) {
     // 对请求错误做些什么
@@ -24,6 +27,10 @@ Instance.interceptors.response.use(function (response) {
     if(response.data.Code==500){
         //     统一处理
         Toast.fail(unicodes(response.data.Msg));
+        return
+    }
+    if(response.data.code =='1003'){
+        Toast.fail(unicodes(response.data.msg));
         return
     }
     return response.data;

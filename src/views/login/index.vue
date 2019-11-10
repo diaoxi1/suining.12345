@@ -7,11 +7,11 @@
             <div class="form-box">
                 <div class="form-item">
                     <span>用户名：</span>
-                    <input type="text">
+                    <input type="text" v-model="user">
                 </div>
                 <div class="form-item">
                     <span>密&nbsp;&nbsp;码：</span>
-                    <input type="password">
+                    <input type="password" v-model="pwd">
                 </div>
             </div>
         </div>
@@ -26,11 +26,22 @@
     </div>
 </template>
 <script>
+    import { mapMutations } from 'vuex'
     export default{
         name:'login',
+        data(){
+          return {
+              user:'',
+              pwd:''
+          }
+        },
         methods:{
+            ...mapMutations(['setToken']),
             login(){
-                this.$router.push({ path:'/user' })
+                this.$api.index.login({user:this.user,pwd:this.pwd}).then(res=>{
+                    this.setToken(res.token)
+                    this.$router.push({ path:'/user' })
+                })
             },
             register(){
                 this.$router.push({ path:'/register' })
