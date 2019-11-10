@@ -1,7 +1,7 @@
 import axios from 'axios'
-import {Toast} from 'vant';
+import { Toast } from 'vant';
 import store from '../store'
-
+import router from '../router'
 // 创建实例
 
 const Instance = axios.create({
@@ -20,7 +20,7 @@ Instance.interceptors.request.use(function (config) {
     // 对请求错误做些什么
     return Promise.reject(error);
 });
-
+console.log(router)
 // 添加响应拦截器
 Instance.interceptors.response.use(function (response) {
     // 对响应数据做点什么
@@ -29,8 +29,15 @@ Instance.interceptors.response.use(function (response) {
         Toast.fail(unicodes(response.data.Msg));
         return
     }
-    if(response.data.code =='1003'){
+    let code = response.data.code
+    if(code=='1003'){
         Toast.fail(unicodes(response.data.msg));
+        return
+    }
+    if( code=='1001'|| code == '1002' || code =='1004 ' || code =='1005 '){
+        router.push({
+            name:'login'
+        })
         return
     }
     return response.data;
