@@ -757,6 +757,7 @@
                         sex:this.sex
                 }
                 this.$api.index.reg(data).then(res=>{
+                    Toast.success('注册成功');
                     this.$router.push({ name:'login'})
                 })
             },

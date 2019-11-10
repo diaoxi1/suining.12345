@@ -30,7 +30,7 @@
         name:'login',
         methods:{
             login(){
-                this.$router.push({ path:'/' })
+                this.$router.push({ path:'/user' })
             },
             register(){
                 this.$router.push({ path:'/register' })

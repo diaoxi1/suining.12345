@@ -41,6 +41,16 @@ export default new Router({
           name: 'appeal-info',
           component: () => import('./views/appeal-info/index.vue')
         },
+      {
+          path: '/submit/:type',
+          name: 'submit',
+          component: () => import('./views/submit/index.vue')
+      },
+      {
+          path: '/user',
+          name: 'user',
+          component: () => import('./views/user/index.vue')
+      },
   ],
   scrollBehavior: () => ({ y: 0 })
 })

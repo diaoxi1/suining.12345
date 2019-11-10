@@ -1,37 +1,56 @@
 <template>
-    <van-list
-            v-model="loading"
-            :finished="finished"
-            finished-text="没有更多了"
-            @load="onLoad"
-    >
-        <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
-            <div class="img">
-                <img src="../../../assets/wancheng.png" alt="" v-if="item.status==='已办结'">
-                <img src="../../../assets/chuli.png" alt="" v-else>
-            </div>
-            <div class="list-info">
-                <div class="title">
-                    {{item.title}}
-                </div>
-                <div class="item-info">
-                    <div class="bh">{{item.id}}</div>
-                    <div class="bh">{{item.time | dateformat}}</div>
-                </div>
-            </div>
+    <div class="user">
+        <van-sticky>
+            <van-nav-bar
+                    title="个人中心"
+                    left-text="返回"
+                    left-arrow
+                    @click-left="onClickLeft"
+            />
+        </van-sticky>
+        <div class="info van-hairline--bottom">
+            <img src="../../assets/touxiang.png" alt="">
+            <span>欢迎您，刁鑫</span>
         </div>
-    </van-list>
+        <div class="list-box">
+                <div class="title">
+                    我的诉求
+                </div>
+            <van-list
+                    v-model="loading"
+                    :finished="finished"
+                    finished-text="没有更多了"
+                    @load="onLoad"
+            >
+                <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
+                    <div class="img">
+                        <img src="../../assets/wancheng.png" alt="" v-if="item.status==='已办结'">
+                        <img src="../../assets/chuli.png" alt="" v-else>
+                    </div>
+                    <div class="list-info">
+                        <div class="title">
+                            {{item.title}}
+                        </div>
+                        <div class="item-info">
+                            <div class="bh">{{item.id}}</div>
+                            <div class="bh">{{item.time | dateformat}}</div>
+                        </div>
+                    </div>
+                </div>
+            </van-list>
+        </div>
+    </div>
 </template>
 <script>
-    export default{
-        name:'appeal-list',
-        data() {
-            return {
+    export default {
+        name:'user',
+        data(){
+            return{
                 list: [],
                 loading: false,
                 finished: false,
                 page:1
-            };
+            }
         },
         filters:{
             dateformat(time) {
@@ -77,14 +96,12 @@
                 return result
             },
         },
-        methods: {
-            search(data){
-                this.list = []
-                this.page = 1
-               this.onLoad(data)
+        methods:{
+            onClickLeft(){
+                this.$router.go(-1)
             },
-            onLoad(data={}) {
-                this.$api.index.getAppeaList({pg:this.page,...data}).then(res=>{
+            onLoad() {
+                this.$api.index.getAppeaList({pg:this.page}).then(res=>{
                     this.loading = false
                     if(res.if_next){
                         this.page= this.page + 1
@@ -106,7 +123,41 @@
         }
     }
 </script>
+
+
 <style scoped>
+    .info{
+        height: 150px;
+        width: 100%;
+        position: relative;
+    }
+    .info img{
+        width: 70px;
+        height: 70px;
+        overflow: hidden;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .info span{
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 14px;
+    }
+
+    .title{
+        width: 100%;
+        height: 40px;
+        font-size: 14px;
+        text-align: left;
+        padding-left: 15px;
+        color: #656565;
+        line-height: 40px;
+    }
     .list{
         width: 100%;
         height: 60px;
