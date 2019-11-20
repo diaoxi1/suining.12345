@@ -18,6 +18,23 @@ Vue.prototype.$echarts = echarts
 Vue.component('copyright',copyright)
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  if(to.meta.isLogin){
+    if(store.getters.getToken){
+      next()
+    }else{
+      next({
+        name: 'login' // 跳转到PKI登录页
+      })
+    }
+  }else {
+    next()
+  }
+
+})
+
+
+
 new Vue({
   router,
   store,

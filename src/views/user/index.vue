@@ -12,16 +12,17 @@
             <img src="../../assets/touxiang.png" alt="">
             <span>欢迎您，刁鑫</span>
         </div>
+        <item_bar></item_bar>
         <div class="list-box">
                 <div class="title">
                     我的诉求
                 </div>
             <van-list
+                    v-if="list2"
                     v-model="loading"
                     :finished="finished"
                     finished-text="没有更多了"
-                    @load="onLoad"
-            >
+                    @load="onLoad">
                 <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
                     <div class="img">
                         <img src="../../assets/wancheng.png" alt="" v-if="item.status==='已办结'">
@@ -42,6 +43,7 @@
     </div>
 </template>
 <script>
+    import item_bar from '../home/component/item-bar'
     export default {
         name:'user',
         data(){
@@ -49,8 +51,12 @@
                 list: [],
                 loading: false,
                 finished: false,
-                page:1
+                page:1,
+                list2:false
             }
+        },
+        components:{
+            item_bar
         },
         filters:{
             dateformat(time) {
@@ -101,7 +107,7 @@
                 this.$router.go(-1)
             },
             onLoad() {
-                this.$api.index.getAppeaList({pg:this.page}).then(res=>{
+                this.$api.index.myAppealInfo({pg:this.page}).then(res=>{
                     this.loading = false
                     if(res.if_next){
                         this.page= this.page + 1

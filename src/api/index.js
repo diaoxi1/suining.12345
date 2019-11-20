@@ -20,25 +20,24 @@ Instance.interceptors.request.use(function (config) {
     // 对请求错误做些什么
     return Promise.reject(error);
 });
-console.log(router)
 // 添加响应拦截器
 Instance.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    if(response.data.Code==500){
+    if(response.data.Code===500){
         //     统一处理
         Toast.fail(unicodes(response.data.Msg));
-        return
+        return Promise.reject(response.data.Msg);
     }
     let code = response.data.code
-    if(code=='1003'){
+    if(code==='1003'){
         Toast.fail(unicodes(response.data.msg));
-        return
+        return Promise.reject(response.data.msg);
     }
-    if( code=='1001'|| code == '1002' || code =='1004 ' || code =='1005 '){
+    if( code==='1001'|| code === '1002' || code ==='1004 ' || code ==='1005 '){
         router.push({
             name:'login'
         })
-        return
+        return Promise.reject();
     }
     return response.data;
 }, function (error) {

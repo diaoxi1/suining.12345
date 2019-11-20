@@ -33,5 +33,9 @@ export default {
 //    个人的诉求
     myAppealInfo(){
         return Instance.get('/v1/account/bill')
+    },
+//    诉求提交
+    putAppeal(data){
+        return Instance.post('/v1/account/addBill',data)
     }
 }

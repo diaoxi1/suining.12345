@@ -44,13 +44,20 @@ export default new Router({
       {
           path: '/submit/:type',
           name: 'submit',
+          meta:{
+              isLogin:true
+          },
           component: () => import('./views/submit/index.vue')
       },
       {
           path: '/user',
           name: 'user',
+          meta:{
+              isLogin:true
+          },
           component: () => import('./views/user/index.vue')
       },
   ],
   scrollBehavior: () => ({ y: 0 })
 })
+
