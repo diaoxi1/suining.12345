@@ -150,7 +150,7 @@
     }
 
     .title{
-        width: 100%;
+        width: 50%;
         height: 40px;
         font-size: 14px;
         text-align: left;
