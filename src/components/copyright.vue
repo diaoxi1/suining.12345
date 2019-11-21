@@ -90,8 +90,8 @@
         position: relative;
     }
     .left img,.right img{
-        width: 100%;
-        height: 22px;
+        width: 60%;
+        height: 15px;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -110,6 +110,7 @@
         width: 14px;
         height: 100%;
         position: relative;
+        margin-left: 5px;
     }
     .link-array{
         width: 100%;

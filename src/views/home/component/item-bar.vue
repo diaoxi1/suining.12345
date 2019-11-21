@@ -1,17 +1,17 @@
 <template>
     <van-row class="item-array">
-        <van-col span="8" class="item van-hairline--bottom" @click="$router.push({name:'appeal-list'})">
+        <van-col span="12" class="item van-hairline--bottom" @click="$router.push({name:'appeal-list'})">
             <img src="../../../assets/xjcx.png" alt="">
             <span>信件查询</span>
         </van-col>
-        <van-col span="8" class="item van-hairline--bottom van-hairline--left" @click="submit('secretary')">
+        <van-col span="12" class="item van-hairline--bottom van-hairline--left" @click="submit('secretary')">
             <img src="../../../assets/sjxx.png" alt="">
-            <span>市长信箱</span>
+            <span>我要写信</span>
         </van-col>
-        <van-col span="8" class="item van-hairline--bottom van-hairline--left" @click="submit('mayor')">
-            <img src="../../../assets/swxx.png" alt="">
-            <span>书记信箱</span>
-        </van-col>
+<!--        <van-col span="8" class="item van-hairline&#45;&#45;bottom van-hairline&#45;&#45;left" @click="submit('mayor')">-->
+<!--            <img src="../../../assets/swxx.png" alt="">-->
+<!--            <span>书记信箱</span>-->
+<!--        </van-col>-->
     </van-row>
 </template>
 <script>
