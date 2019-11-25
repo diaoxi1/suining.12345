@@ -23,7 +23,7 @@
             <van-datetime-picker
                     class
                     v-model="currentDate"
-                    type="datetime"
+                    type="date"
                     :min-date="minDate"
                     :max-date="maxDate"
                     @confirm="confirm"
@@ -44,6 +44,7 @@
                 startTime: null,
                 endTime:null,
                 status:'全部',
+                statusValue:1,
                 show: false,
                 minHour: 10,
                 maxHour: 20,
@@ -53,9 +54,9 @@
                 isStart:true,
                 show2: false,
                 actions: [
-                    { name: '全部' },
-                    { name: '已受理' },
-                    { name: '已结办' }
+                    { name: '全部',value:1},
+                    { name: '已受理',value:2},
+                    { name: '已结办',value:3}
                 ]
             }
         },
@@ -72,14 +73,15 @@
             },
             confirm(value) {
                 if(this.isStart){
-                    this.startTime = this.dateformat('y-M-d h:m:s',value)
+                    this.startTime = this.dateformat('y-M-d',value)
                 }else{
-                    this.endTime = this.dateformat('y-M-d h:m:s',value)
+                    this.endTime = this.dateformat('y-M-d',value)
                 }
                 this.show = false
             },
             onSelect(item) {
                 this.status = item.name
+                this.statusValue = item.value
                 this.show2 = false;
             },
             dateformat(params,time) {
@@ -127,9 +129,10 @@
                     data.id=this.id
                     data.phone=this.phone
                 }else{
-                    data.startTime=this.startTime
+                    data.beginTime=this.startTime
                     data.endTime = this.endTime
-                    data.status = this.status
+                    data.state = this.statusValue
+                    data.flag = 1
                 }
                 this.$emit('search',data)
             }

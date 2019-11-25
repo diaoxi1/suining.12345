@@ -5,21 +5,21 @@
             finished-text="没有更多了"
             @load="onLoad"
     >
-        <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
-            <div class="img">
-                <img src="../../../assets/wancheng.png" alt="" v-if="item.status==='已办结'">
-                <img src="../../../assets/chuli.png" alt="" v-else>
-            </div>
-            <div class="list-info">
-                <div class="title">
-                    {{item.title}}
+            <div class="list van-hairline--bottom" @click="getAppeal(item)" v-for="(item,index) in list" :key="index" >
+                <div class="img">
+                    <img src="../../../assets/wancheng.png" alt="" v-if="item.status==='已办结'">
+                    <img src="../../../assets/chuli.png" alt="" v-else>
                 </div>
-                <div class="item-info">
-                    <div class="bh">{{item.id}}</div>
-                    <div class="bh">{{item.time | dateformat}}</div>
+                <div class="list-info">
+                    <div class="title">
+                        {{item.title}}
+                    </div>
+                    <div class="item-info">
+                        <div class="bh">{{item.id}}</div>
+                        <div class="bh">{{item.createTime}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
     </van-list>
 </template>
 <script>
@@ -81,7 +81,9 @@
             search(data){
                 this.list = []
                 this.page = 1
-               this.onLoad(data)
+                this.onLoad(data)
+                this.loading = true
+                this.finished = false
             },
             onLoad(data={}) {
                 this.$api.index.getAppeaList({pg:this.page,...data}).then(res=>{
@@ -107,6 +109,9 @@
     }
 </script>
 <style scoped>
+    .van-list{
+        width: 100%
+    }
     .list{
         width: 100%;
         height: 60px;
@@ -121,15 +126,15 @@
         margin-left: 5px;
     }
     .img img{
-        width: 100%;
-        height: 100%;
+        height: 40px;
+        width: 40px;
     }
     .list-info{
-        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         padding-left: 15px;
+        width: 90%;
     }
     .item-info{
         display: flex;
@@ -138,7 +143,7 @@
     .title{
         font-size: 14px;
         text-align: left;
-        width: 100%;
+        width: 50%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

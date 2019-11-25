@@ -127,7 +127,6 @@
                 this.data.HANDLE_TYPE = arr[value]
             },
             submit(){
-                console.log(this.data)
                 let { HANDLE_TYPE,ACCEPT_TYPE,AREA,KEYWORD,CONTENT } = this.data
                 if(!HANDLE_TYPE||!ACCEPT_TYPE||!AREA||!KEYWORD||!CONTENT){
                     this.$toast.fail('必填项不能为空');
@@ -138,7 +137,8 @@
                     forbidClick: true
                 });
                 this.$api.index.putAppeal({ HANDLE_TYPE,ACCEPT_TYPE,AREA,KEYWORD,CONTENT } ).then(res=>{
-                    this.$router.go(-1)
+                    Toast.success('提交成功');
+                    this.$router.push({ path:'/user' })
                 })
 
             },

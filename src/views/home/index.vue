@@ -47,7 +47,6 @@ export default{
     },
     methods:{
         userInfo(){
-            console.log(this.$store.getters.getToken)
             if(!this.$store.getters.getToken){
                 this.$router.push({name:'login'})
             }else{

@@ -10,7 +10,7 @@
         </van-sticky>
         <div class="info van-hairline--bottom">
             <img src="../../assets/touxiang.png" alt="">
-            <span>欢迎您，刁鑫</span>
+            <span>{{name}}</span>
         </div>
         <item_bar></item_bar>
         <div class="list-box">
@@ -21,7 +21,7 @@
                     v-if="list2"
                     v-model="loading"
                     :finished="finished"
-                    finished-text="没有更多了"
+                    finished-text="您还没有诉求"
                     @load="onLoad">
                 <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
                     <div class="img">
@@ -52,7 +52,8 @@
                 loading: false,
                 finished: false,
                 page:1,
-                list2:false
+                list2:true,
+                name:'欢迎您，用户'
             }
         },
         components:{
@@ -109,6 +110,7 @@
             onLoad() {
                 this.$api.index.myAppealInfo({pg:this.page}).then(res=>{
                     this.loading = false
+                    this.name = res.userName
                     if(res.if_next){
                         this.page= this.page + 1
                     }

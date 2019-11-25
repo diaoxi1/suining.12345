@@ -5,7 +5,9 @@
                 left-text="返回"
                 left-arrow
                 @click-left="onClickLeft"
-        />
+        >
+            <van-icon name="user-o" slot="right" size="2em" @click="userInfo"/>
+        </van-nav-bar>
         <searchTbas @search="search"></searchTbas>
         <list ref="list"></list>
     </div>
@@ -31,6 +33,14 @@
             },
             search(data){
                 this.$refs.list.search(data)
+            },
+            userInfo(){
+                if(!this.$store.getters.getToken){
+                    this.$router.push({name:'login'})
+                }else{
+                    this.$router.push({name:'user'})
+                }
+
             }
         }
     }

@@ -5,7 +5,7 @@ import router from '../router'
 // 创建实例
 
 const Instance = axios.create({
-    baseURL: 'http://12345.suining.gov.cn:5000',
+    baseURL: 'http://101.132.226.213',
     timeout: 1000 * 60, // 2分钟超时,考虑文件上传
     headers: { 'Content-Type': 'application/json;' }
 })
@@ -29,11 +29,11 @@ Instance.interceptors.response.use(function (response) {
         return Promise.reject(response.data.Msg);
     }
     let code = response.data.code
-    if(code==='1003'){
-        Toast.fail(unicodes(response.data.msg));
+    if(code===1003){
+        Toast.fail(response.data.msg);
         return Promise.reject(response.data.msg);
     }
-    if( code==='1001'|| code === '1002' || code ==='1004 ' || code ==='1005 '){
+    if( code===1001|| code === 1002 || code ===1004|| code ===1005){
         router.push({
             name:'login'
         })

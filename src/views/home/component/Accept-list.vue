@@ -14,7 +14,7 @@
                 <van-loading  v-if="loading"></van-loading>
                 <template v-for="item in bill">
                     <tr @click="acceptClick(item.id)">
-                        <td>{{item.title}}</td><td>{{item.time | dataTime}}</td><td>{{item.status}}</td>
+                        <td>{{item.title}}</td><td>{{item.createTime}}</td><td>{{item.status}}</td>
                     </tr>
                 </template>
             </table>
