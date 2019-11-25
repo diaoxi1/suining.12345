@@ -73,6 +73,7 @@
           }
         },
         activated(){
+            this.CB = []
             this.$api.index.getAppealInfo(this.$route.params.id).then(res=>{
                 if(res.Data.length){
                     this.title = this.unicodes(res.Data[0].KEYWORD)
