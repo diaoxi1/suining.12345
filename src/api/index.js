@@ -5,8 +5,8 @@ import router from '../router'
 // 创建实例
 
 const Instance = axios.create({
-    baseURL: 'http://101.132.226.213',
-    timeout: 1000 * 60, // 2分钟超时,考虑文件上传
+    baseURL: '',
+    timeout: 1000 * 60, // 2分钟超时
     headers: { 'Content-Type': 'application/json;' }
 })
 // 添加请求拦截器
