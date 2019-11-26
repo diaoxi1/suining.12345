@@ -8,8 +8,8 @@
         @load="onLoad"
     >
         <div class="list">
-            <div v-for="item in list"
-                 :key="item.id"
+            <div v-for="(item,index) in list"
+                 :key="index"
                  :title="item.text"
                  @click="newsInfo(item.id)"
                  class="van-hairline--bottom item">
@@ -29,13 +29,21 @@
                 loading: false,
                 finished: false,
                 error:false,
-                pg:1
+                pg:1,
+                key:null
             }
+        },
+        activated(){
+            this.loading=true
+            this.pg = 1
+            this.list = []
+            this.finished=false
+            this.key = this.$route.params.key
+            this.onLoad()
         },
         methods: {
             onLoad() {
-                let key = this.$route.params.key
-                this.$api.work.getWork(this.pg,key).then(res=>{
+                this.$api.work.getWork(this.pg,this.key).then(res=>{
                     this.loading = false
                     if(res.if_next){
                         this.pg = res.pg +1

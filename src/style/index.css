@@ -2,6 +2,7 @@ div{
     box-sizing: border-box;
 }
 html,body,#app{
+    background: #ffffff;
     height: 100%;
 }
 .html-text{

@@ -23,7 +23,7 @@
                     <div class="box html-text" v-html="html"></div>
                 </div>
                 <div class="split-line"></div>
-                <copyright></copyright>
+<!--                <copyright></copyright>-->
             </template>
 
     </div>

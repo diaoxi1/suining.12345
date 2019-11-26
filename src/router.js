@@ -22,7 +22,7 @@ export default new Router({
               component: () => import('./views/register/index.vue')
          },
         {
-            path: '/work-list',
+            path: '/work-list/:key?',
             name: 'work-list',
             component: () => import('./views/work-list/index.vue')
         },

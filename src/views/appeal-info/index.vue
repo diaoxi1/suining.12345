@@ -53,7 +53,7 @@
             </template>
 
             <div class="split-line"></div>
-            <copyright></copyright>
+<!--            <copyright></copyright>-->
         </template>
     </div>
 </template>

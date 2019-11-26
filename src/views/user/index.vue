@@ -14,7 +14,7 @@
         </div>
         <item_bar></item_bar>
         <div class="list-box">
-                <div class="title">
+                <div class="titles">
                     我的诉求
                 </div>
             <van-list
@@ -157,7 +157,7 @@
         font-size: 14px;
     }
 
-    .title{
+    .titles{
         width: 50%;
         height: 40px;
         font-size: 14px;
