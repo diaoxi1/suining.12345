@@ -51,7 +51,11 @@
                     </div>
                 </div>
             </template>
-
+            <div class="result" v-if="!CB.length">
+                <div class="result">
+                    <div class="title">暂无处理结果</div>
+                </div>
+            </div>
             <div class="split-line"></div>
 <!--            <copyright></copyright>-->
         </template>
@@ -73,6 +77,7 @@
           }
         },
         activated(){
+            Object.assign(this.$data, this.$options.data())
             this.CB = []
             this.$api.index.getAppealInfo(this.$route.params.id).then(res=>{
                 if(res.Data.length){
@@ -83,10 +88,12 @@
                     this.KEYWORD = res.Data[0].KEYWORD
                     this.CONTENT = res.Data[0].CONTENT
                     res.Data.map(item=>{
-                        this.CB.push({
-                            name:item.NAME,
-                            cb:item.CB_CONTENT
-                        })
+                        if(item.NAME.length||item.CB_CONTENT.length){
+                            this.CB.push({
+                                name:item.NAME,
+                                cb:item.CB_CONTENT
+                            })
+                        }
                     })
                     this.show = false
                 }

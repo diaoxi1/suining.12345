@@ -2,7 +2,7 @@
     <div class="banner van-hairline--bottom">
         <img src="../../../assets/logo2.png" class="logo2">
         <div class="search">
-            <input class="search-input" type="text" v-model="key">
+            <input class="search-input" type="text" v-model="key" placeholder="请输入检索条件">
             <img src="../../../assets/sousuo.png" alt="" class="sousuo" @click="search">
         </div>
     </div>
@@ -45,9 +45,9 @@
     .search-input{
         outline:none;
         width: 100%;
-        height: 44px;
+        height: 40px;
         margin: 0;
-        line-height: 44px;
+        line-height: 40px;
         font-size: 14px;
         border: 1px solid #989898;
         padding-left: 10px;
