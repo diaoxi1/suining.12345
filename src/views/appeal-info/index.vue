@@ -96,6 +96,11 @@
                         }
                     })
                     this.show = false
+                }else{
+                    this.$toast.fail('诉求状态异常');
+                    setTimeout(()=>{
+                        this.$router.go(-1)
+                    },2000)
                 }
             })
         },
