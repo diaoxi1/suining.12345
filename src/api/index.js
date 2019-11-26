@@ -5,7 +5,7 @@ import router from '../router'
 // 创建实例
 
 const Instance = axios.create({
-    baseURL: 'http://101.132.226.213',
+    baseURL: 'http://12345.suining.gov.cn:5000',
     timeout: 1000 * 60, // 2分钟超时
     headers: { 'Content-Type': 'application/json;' }
 })
