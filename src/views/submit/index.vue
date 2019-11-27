@@ -15,6 +15,7 @@
                     label="诉求类型"
                     @click="type_show = true"
                     placeholder="请输选择诉求类型"
+                    readonly
             />
             <van-field
                     v-model="ACCEPT_TYPE"
@@ -22,6 +23,7 @@
                     label="诉求类别"
                     @click="ACCEPT_TYPE_SHOW = true"
                     placeholder="请输选择诉求类型"
+                    readonly
             />
             <van-field
                     v-model="AREA"
@@ -29,6 +31,7 @@
                     label="事件辖区"
                     @click="AREA_SHOW = true"
                     placeholder="请输选择事件辖区"
+                    readonly
 
             />
             <van-field
@@ -137,7 +140,7 @@
                     forbidClick: true
                 });
                 this.$api.index.putAppeal({ HANDLE_TYPE,ACCEPT_TYPE,AREA,KEYWORD,CONTENT } ).then(res=>{
-                    Toast.success('提交成功');
+                    this.$toast.success('提交成功');
                     this.$router.push({ path:'/user' })
                 })
 

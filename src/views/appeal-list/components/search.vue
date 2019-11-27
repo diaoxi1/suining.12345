@@ -8,8 +8,8 @@
                         <van-field v-model="phone" placeholder="请输入电话号码" label="电话号码" clearable/>
                     </van-tab>
                     <van-tab title="多条件查询">
-                        <van-field v-model="startTime" placeholder="请选择开始时间" label="开始时间" clearable @click="startDate(true)"/>
-                        <van-field v-model="endTime" placeholder="请选择结束时间" label="结束时间" clearable @click="startDate(false)"/>
+                        <van-field v-model="startTime" placeholder="请选择开始时间" label="开始时间" readonly clearable @click="startDate(true)"/>
+                        <van-field v-model="endTime" placeholder="请选择结束时间" label="结束时间" readonly clearable @click="startDate(false)"/>
                         <van-cell title="情况" :value="status" @click="show2=true" />
                     </van-tab>
                 </van-tabs>

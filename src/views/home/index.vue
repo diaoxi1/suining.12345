@@ -1,7 +1,7 @@
 <template>
     <div class="home">
             <van-sticky>
-                <van-nav-bar title="12345政府服务热线">
+                <van-nav-bar title="遂宁市12345政府服务热线">
                         <van-icon name="user-o" slot="right" size="2em" @click="userInfo"/>
                 </van-nav-bar>
             </van-sticky>
