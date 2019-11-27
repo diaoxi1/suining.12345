@@ -15,10 +15,9 @@
                     我的诉求
                 </div>
             <van-list
-                    v-if="list2"
                     v-model="loading"
                     :finished="finished"
-                    finished-text="您还没有诉求"
+                    finished-text="没有更多诉求了"
                     @load="onLoad">
                 <div class="list van-hairline--bottom" v-for="(item,index) in list" :key="index" @click="getAppeal(item)">
                     <div class="img">
@@ -49,12 +48,19 @@
                 loading: false,
                 finished: false,
                 page:1,
-                list2:true,
                 name:'欢迎您，用户'
             }
         },
         components:{
             item_bar
+        },
+        activated(){
+            if(this.$route.params.load){
+                this.page= 1
+                this.list = []
+                this.loading = true
+                this.onLoad()
+            }
         },
         filters:{
             dateformat(time) {

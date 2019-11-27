@@ -50,7 +50,7 @@
                     autosize
                     label="诉求内容"
                     type="textarea"
-                    placeholder="请输入诉求类荣"
+                    placeholder="请输入诉求内容"
             />
         </van-cell-group>
         <van-button type="primary" style="width: 100%;margin-top: 20px" @click="submit" >立即提交</van-button>
@@ -141,7 +141,7 @@
                 });
                 this.$api.index.putAppeal({ HANDLE_TYPE,ACCEPT_TYPE,AREA,KEYWORD,CONTENT } ).then(res=>{
                     this.$toast.success('提交成功');
-                    this.$router.push({ path:'/user' })
+                    this.$router.push({ path:'/user',params:{load:true} })
                 })
 
             },
