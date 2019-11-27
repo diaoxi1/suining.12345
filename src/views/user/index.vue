@@ -1,12 +1,9 @@
 <template>
     <div class="user">
         <van-sticky>
-            <van-nav-bar
-                    title="个人中心"
-                    left-text="返回"
-                    left-arrow
-                    @click-left="onClickLeft"
-            />
+            <van-nav-bar title="个人中心">
+                <van-icon name="wap-home-o" slot="right" size="2em" @click="onClickLeft"/>
+            </van-nav-bar>
         </van-sticky>
         <div class="info van-hairline--bottom">
             <img src="../../assets/touxiang.png" alt="">
@@ -105,7 +102,7 @@
         },
         methods:{
             onClickLeft(){
-                this.$router.go(-1)
+                this.$router.push({name:'home'})
             },
             onLoad() {
                 this.$api.index.myAppealInfo({pg:this.page}).then(res=>{
