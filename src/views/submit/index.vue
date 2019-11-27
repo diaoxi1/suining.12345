@@ -2,7 +2,7 @@
     <div class="submit">
         <van-sticky>
             <van-nav-bar
-                    :title="title"
+                    title="我要写信"
                     left-text="返回"
                     left-arrow
                     @click-left="onClickLeft"
